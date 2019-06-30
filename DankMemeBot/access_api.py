@@ -6,9 +6,9 @@ import zipfile
 import time
 import re
 from selenium.webdriver import Chrome
-from selenium.webdriver.common.by import By
 
 
+# User's Reddit credentials
 USERNAME = 'sir_justkidding'
 PASSWORD = 'Rjohnkim0414'
 
@@ -43,25 +43,26 @@ def get_api_keys():
 
 
 def pass_chrome_binary():
-    platform = sys.platform
+    if not os._exists('./chromedriver'):
+        platform = sys.platform
 
-    if platform == 'linux':
-        system = 'linux64.zip'
-    elif platform == 'darwin':
-        system = 'mac64.zip'
-    elif platform == 'win32':
-        system = 'win32.zip'
-    else:
-        sys.exit('Error: no chromedriver available for your system')
+        if platform == 'linux':
+            system = 'linux64.zip'
+        elif platform == 'darwin':
+            system = 'mac64.zip'
+        elif platform == 'win32':
+            system = 'win32.zip'
+        else:
+            sys.exit('Error: no chromedriver available for your system')
 
-    url = 'https://chromedriver.storage.googleapis.com/74.0.3729.6/chromedriver_' + system
-    urllib.request.urlretrieve(url, './chromedriver.zip')
-    with zipfile.ZipFile('./chromedriver.zip', 'r') as zip_ref:
-        zip_ref.extractall('.')
+        url = 'https://chromedriver.storage.googleapis.com/74.0.3729.6/chromedriver_' + system
+        urllib.request.urlretrieve(url, './chromedriver.zip')
+        with zipfile.ZipFile('./chromedriver.zip', 'r') as zip_ref:
+            zip_ref.extractall('.')
 
-    try:
-        os.remove('./chromedriver.zip')
-    except FileNotFoundError:
-        print('Chrome driver zip file not found.')
+        try:
+            os.remove('./chromedriver.zip')
+        except FileNotFoundError:
+            print('Chrome driver zip file not found.')
 
-    os.chmod('./chromedriver', stat.S_IRWXU)
+        os.chmod('./chromedriver', stat.S_IRWXU)
