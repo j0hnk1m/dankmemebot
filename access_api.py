@@ -1,7 +1,7 @@
 import os
 import sys
 import stat
-import urllib.request
+import urllib
 import zipfile
 import time
 import re
@@ -13,7 +13,7 @@ USERNAME = 'sir_justkidding'
 PASSWORD = 'Rjohnkim0414'
 
 
-def get_api_keys():
+def get_reddit_api_keys():
     pass_chrome_binary()
     os.environ['webdriver.chrome.driver'] = './chromedriver'
     driver = Chrome('./chromedriver')
