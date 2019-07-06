@@ -5,8 +5,7 @@ import requests
 from tqdm import tqdm
 
 
-ACCESS_TOKEN = 'FC0tkuO4MU0Wjg'; ACCESS_TOKEN_SECRET = 'n4II27rRz_M_fqbl242zmcyayvY'
-# ACCESS_TOKEN, ACCESS_TOKEN_SECRET = access_api.get_reddit_api_keys()
+ACCESS_TOKEN, ACCESS_TOKEN_SECRET = access_api.get_reddit_api_keys()
 
 
 def download_posts(subreddit_):

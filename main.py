@@ -1,10 +1,10 @@
-import access_api
 import scrape
 import share
 
 
 def main():
-	reddit_access_token, reddit_secret_key = access_api.get_reddit_api_keys()
+	scrape.download_posts('dankmemes')
+	share.messenger()
 
 
 if __name__ == '__main__':
