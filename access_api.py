@@ -9,8 +9,8 @@ from selenium.webdriver import Chrome
 
 
 # User's Reddit credentials
-USERNAME = 'sir_justkidding'
-PASSWORD = 'Rjohnkim0414'
+USERNAME = 'username'
+PASSWORD = 'password'
 
 
 def get_reddit_api_keys():

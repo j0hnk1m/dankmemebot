@@ -1,16 +1,44 @@
 from fbchat import Client
 from fbchat.models import *
+from twilio import rest
 import sys
 import os
 import time
 
 
-def send_with_messenger():
+TWILIO_ACCOUNT_SID = 'ACdd47336b5ad997101ad8d78719fbafcf'
+TWILIO_AUTH_TOKEN = '6284feb50eb183887bb81e9a93f7edd6'
+
+
+def sms():
+    client = rest.Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
+    message = client.messages.create(
+        to="+15558675309",
+        from_="+18317776235",
+        body="Hello from Python!",
+        media_url='')
+    print(message.sid)
+
+
+# def twitter():
+#
+
+
+def whatsapp():
+    client = rest.Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
+    message = client.messages.create(
+        to="+14155238886",
+        from_="+14087814962",
+        body="Hello from Python!")
+    print(message.sid)
+
+
+def messenger():
     client = Client('kim.john228@gmail.com', 'Fjohnkim0414')
     threads = client.fetchThreadList(limit=5)
     print("Threads: {}".format(threads))
 
-    thread_id = choose_receiver(threads)
+    thread_id = choose_messenger_receiver(threads)
     thread_type = ThreadType.GROUP
 
     for file_name in os.listdir('./imgs'):
@@ -18,7 +46,7 @@ def send_with_messenger():
         time.sleep(3)
 
 
-def choose_receiver(threads_):
+def choose_messenger_receiver(threads_):
     for h, thread in enumerate(threads_):
         if thread.type == ThreadType.GROUP:
             print(str(h + 1) + ': ' + thread.name)
